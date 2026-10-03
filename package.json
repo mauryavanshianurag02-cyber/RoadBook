@@ -1,0 +1,20 @@
+{
+  "name": "stockbook-inventory",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Inventory Adjustment & Warehouse Management web app for AKASHARWDI, TABLE 1 and CHAIR warehouses.",
+  "type": "module",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server/server.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch server/server.js",
+    "seed": "node --disable-warning=ExperimentalWarning scripts/seed.js",
+    "test": "node --disable-warning=ExperimentalWarning --test tests/*.test.js",
+    "reset": "node --disable-warning=ExperimentalWarning scripts/reset.js"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "dependencies": {},
+  "license": "MIT"
+}

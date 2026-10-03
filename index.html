@@ -3,101 +3,114 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<meta name="theme-color" content="#0f172a" />
-<title>RoadBook — Transport Business Tracker</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Cpath d='M8 40h32V22H18z' fill='none' stroke='%23f59e0b' stroke-width='4' stroke-linejoin='round'/%3E%3Cpath d='M40 28h10l6 6v6H40z' fill='none' stroke='%23f59e0b' stroke-width='4' stroke-linejoin='round'/%3E%3Ccircle cx='20' cy='44' r='4' fill='%23f8fafc'/%3E%3Ccircle cx='46' cy='44' r='4' fill='%23f8fafc'/%3E%3C/svg%3E" />
+<meta name="theme-color" content="#1d4ed8" />
+<title>StockBook — Inventory &amp; Warehouse Management</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d4ed8'/%3E%3Cpath d='M12 22l20-8 20 8-20 8z' fill='%23fff'/%3E%3Cpath d='M12 22v20l20 8V30z' fill='%23bfdbfe'/%3E%3Cpath d='M52 22v20L32 50V30z' fill='%2393c5fd'/%3E%3C/svg%3E" />
 <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
 <div class="app">
 
-  <!-- ============ SIDEBAR (desktop) ============ -->
-  <aside class="sidebar" id="sidebar">
+  <!-- ============ SIDEBAR / DRAWER ============ -->
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
     <div class="brand">
       <span class="brand-icon" aria-hidden="true">
-        <svg viewBox="0 0 64 64" width="30" height="30"><rect width="64" height="64" rx="14" fill="#f59e0b"/><path d="M8 40h32V22H18z" fill="none" stroke="#0f172a" stroke-width="4.5" stroke-linejoin="round"/><path d="M40 28h10l6 6v6H40z" fill="none" stroke="#0f172a" stroke-width="4.5" stroke-linejoin="round"/><circle cx="20" cy="44" r="4.5" fill="#0f172a"/><circle cx="46" cy="44" r="4.5" fill="#0f172a"/></svg>
+        <svg viewBox="0 0 64 64" width="30" height="30"><rect width="64" height="64" rx="14" fill="#1d4ed8"/><path d="M12 22l20-8 20 8-20 8z" fill="#fff"/><path d="M12 22v20l20 8V30z" fill="#bfdbfe"/><path d="M52 22v20L32 50V30z" fill="#93c5fd"/></svg>
       </span>
-      <span class="brand-text"><strong>RoadBook</strong><small>Transport Tracker</small></span>
+      <span class="brand-text"><strong>StockBook</strong><small>Inventory &amp; Warehouse</small></span>
+      <button class="icon-btn only-mobile" id="btnCloseNav" aria-label="Close menu">✕</button>
     </div>
+
     <nav class="nav" id="mainNav">
       <button class="nav-item is-active" data-view="dashboard">
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
-        Dashboard
+        <span>Dashboard</span>
       </button>
-      <button class="nav-item" data-view="vehicles">
-        <svg viewBox="0 0 24 24"><path d="M1 8h13v8H1zM14 11h4l3 3v2h-7z"/><circle cx="6" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg>
-        Vehicles <span class="nav-count" id="countVehicles" hidden></span>
+      <button class="nav-item" data-view="inventory">
+        <svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></svg>
+        <span>Inventory</span>
+        <i class="nav-count" id="countProducts" hidden></i>
       </button>
-      <button class="nav-item" data-view="bookings">
-        <svg viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M5 8h14M9 4v3M15 4v3"/></svg>
-        Bookings <span class="nav-count warn" id="countPending" hidden></span>
+      <button class="nav-item" data-view="inbound">
+        <svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 20h16"/></svg>
+        <span>Inbound</span>
       </button>
-      <button class="nav-item" data-view="drivers">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M4.5 20c1.4-3.4 4.2-5 7.5-5s6.1 1.6 7.5 5"/></svg>
-        Drivers <span class="nav-count" id="countDrivers" hidden></span>
+      <button class="nav-item" data-view="outbound">
+        <svg viewBox="0 0 24 24"><path d="M12 15V3"/><path d="M7 8l5-5 5 5"/><path d="M4 20h16"/></svg>
+        <span>Outbound</span>
       </button>
-      <button class="nav-item" data-view="expenses">
-        <svg viewBox="0 0 24 24"><path d="M12 3v18M7 6.5h6.5a2.5 2.5 0 0 1 0 5H10.5a2.5 2.5 0 0 0 0 5H17"/></svg>
-        Expenses
+      <button class="nav-item" data-view="history">
+        <svg viewBox="0 0 24 24"><path d="M4 5h16M4 10h16M4 15h10M4 20h7"/></svg>
+        <span>Transactions / History</span>
+      </button>
+      <button class="nav-item nav-add" data-action="add-product">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        <span>Add Product</span>
       </button>
     </nav>
+
     <div class="sidebar-foot">
-      <button class="nav-item small" id="btnBackup">
-        <svg viewBox="0 0 24 24"><path d="M12 4v11m0 0 4-4m-4 4-4-4"/><path d="M4 19h16"/></svg>
-        Backup / Settings
-      </button>
-      <p class="stored-note"><span class="dot"></span>Data saved on this device</p>
+      <div class="db-status" id="dbStatus"><span class="dot"></span><span id="dbStatusText">Connecting…</span></div>
+      <p class="stored-note">Warehouses: AKASHARWDI · TABLE 1 · CHAIR</p>
     </div>
   </aside>
+  <div class="nav-backdrop" id="navBackdrop" hidden></div>
 
   <!-- ============ MAIN ============ -->
   <div class="main">
     <header class="topbar">
-      <div class="topbar-brand">
-        <span class="brand-icon" aria-hidden="true">
-          <svg viewBox="0 0 64 64" width="26" height="26"><rect width="64" height="64" rx="14" fill="#f59e0b"/><path d="M8 40h32V22H18z" fill="none" stroke="#0f172a" stroke-width="4.5" stroke-linejoin="round"/><path d="M40 28h10l6 6v6H40z" fill="none" stroke="#0f172a" stroke-width="4.5" stroke-linejoin="round"/><circle cx="20" cy="44" r="4.5" fill="#0f172a"/><circle cx="46" cy="44" r="4.5" fill="#0f172a"/></svg>
-        </span>
-        <strong>RoadBook</strong>
+      <button class="icon-btn only-mobile" id="btnMenu" aria-label="Open menu">
+        <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <div class="topbar-head">
+        <h1 class="view-title" id="viewTitle">Dashboard</h1>
+        <p class="view-sub" id="viewSub">All warehouses</p>
       </div>
-      <h1 class="view-title" id="viewTitle">Dashboard</h1>
-      <div class="topbar-actions" id="topbarActions"></div>
+      <div class="topbar-actions">
+        <div class="wh-switch" id="whSwitch" role="group" aria-label="Warehouse filter"></div>
+        <button class="btn primary" id="btnAddProduct">
+          <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+          <span>Add Product</span>
+        </button>
+      </div>
     </header>
+
+    <div class="offline" id="offlineBanner" hidden></div>
 
     <main class="content" id="content">
       <section class="view" id="view-dashboard"></section>
-      <section class="view" id="view-vehicles" hidden></section>
-      <section class="view" id="view-bookings" hidden></section>
-      <section class="view" id="view-drivers" hidden></section>
-      <section class="view" id="view-expenses" hidden></section>
+      <section class="view" id="view-inventory" hidden></section>
+      <section class="view" id="view-inbound" hidden></section>
+      <section class="view" id="view-outbound" hidden></section>
+      <section class="view" id="view-history" hidden></section>
     </main>
   </div>
 
-  <!-- ============ BOTTOM NAV (mobile) ============ -->
-  <nav class="tabbar" id="tabbar">
+  <!-- ============ BOTTOM TABS (mobile) ============ -->
+  <nav class="tabbar" id="tabbar" aria-label="Quick navigation">
     <button class="tab is-active" data-view="dashboard">
       <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
       <span>Home</span>
     </button>
-    <button class="tab" data-view="vehicles">
-      <svg viewBox="0 0 24 24"><path d="M1 8h13v8H1zM14 11h4l3 3v2h-7z"/><circle cx="6" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg>
-      <span>Vehicles</span>
+    <button class="tab" data-view="inventory">
+      <svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></svg>
+      <span>Inventory</span>
     </button>
-    <button class="tab tab-add" data-action="quick-add" aria-label="Add new">
+    <button class="tab tab-add" data-action="add-product" aria-label="Add product">
       <span class="tab-add-btn">+</span>
     </button>
-    <button class="tab" data-view="bookings">
-      <svg viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M5 8h14M9 4v3M15 4v3"/></svg>
-      <span>Bookings</span>
-      <i class="tab-dot" id="dotPending" hidden></i>
+    <button class="tab" data-view="inbound">
+      <svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 20h16"/></svg>
+      <span>Inbound</span>
     </button>
-    <button class="tab" data-view="expenses">
-      <svg viewBox="0 0 24 24"><path d="M12 3v18M7 6.5h6.5a2.5 2.5 0 0 1 0 5H10.5a2.5 2.5 0 0 0 0 5H17"/></svg>
-      <span>Expenses</span>
+    <button class="tab" data-view="outbound">
+      <svg viewBox="0 0 24 24"><path d="M12 15V3"/><path d="M7 8l5-5 5 5"/><path d="M4 20h16"/></svg>
+      <span>Outbound</span>
     </button>
   </nav>
 </div>
 
-<!-- Modal + confirm + toast roots -->
+<!-- ============ MODAL ============ -->
 <div class="modal-backdrop" id="modalBackdrop" hidden>
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-head">
@@ -108,31 +121,29 @@
   </div>
 </div>
 
+<!-- ============ CONFIRM ============ -->
 <div class="modal-backdrop" id="confirmBackdrop" hidden>
   <div class="modal modal-sm" role="alertdialog" aria-modal="true">
     <h2 id="confirmTitle">Are you sure?</h2>
     <p id="confirmText"></p>
     <div class="modal-actions">
       <button class="btn ghost" id="confirmNo">Cancel</button>
-      <button class="btn danger" id="confirmYes">Delete</button>
+      <button class="btn danger" id="confirmYes">Yes, continue</button>
     </div>
   </div>
 </div>
 
-<div class="sheet-backdrop" id="sheetBackdrop" hidden>
-  <div class="sheet" role="dialog" aria-modal="true">
-    <div class="sheet-handle"></div>
-    <button class="sheet-item" data-add="booking">🧾 New booking</button>
-    <button class="sheet-item" data-add="expense">⛽ New expense</button>
-    <button class="sheet-item" data-add="vehicle">🚚 New vehicle</button>
-    <button class="sheet-item" data-add="driver">🧍 New driver</button>
-    <button class="sheet-item muted" data-add="">Cancel</button>
-  </div>
+<!-- ============ IMAGE PREVIEW ============ -->
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close image">✕</button>
+  <img id="lightboxImg" alt="Product image preview" />
+  <p class="lightbox-cap" id="lightboxCap"></p>
 </div>
 
 <div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
-<input type="file" id="importFile" accept="application/json,.json" hidden />
 
+<script src="js/core.js"></script>
+<script src="js/views.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

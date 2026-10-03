@@ -1,0 +1,11 @@
+# runtime data — SQLite database + uploaded product images
+data/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+node_modules/
+npm-debug.log*
+.DS_Store
+.env
